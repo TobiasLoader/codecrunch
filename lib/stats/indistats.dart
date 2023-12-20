@@ -8,11 +8,14 @@ import 'package:get/get.dart';
 import '../funcs.dart';
 import '../problems/crunchbox.dart';
 import '../setup.dart';
+import 'stats.dart';
 
 Widget titleTxt(controller, titlecol, Size size) {
   return TextButton(
     style: TextButton.styleFrom(
       padding: EdgeInsets.zero,
+    ).copyWith(
+      overlayColor: MaterialStateProperty.all(Colors.transparent),
     ),
     onPressed: (() {
       controller.page.value = "Problems";
@@ -103,6 +106,8 @@ class IndiStats extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+    double svgwidth = min(min(size.width, size.height) / 3, 200.0);
+    double fontsize = 1.8 * svgwidth / (svgwidth ~/ 100) / 7;
     return Center(
       child: Stack(
         children: [
@@ -127,9 +132,19 @@ class IndiStats extends StatelessWidget {
             child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               Flexible(
                 flex: 1,
-                child: new SvgPicture.asset('assets/Emily_Toby_v3.svg',
-                    color: extractCardCol(controller.problemid.value),
-                    width: min(min(size.width, size.height) / 3, 200)),
+                child: Stack(
+                  children: [
+                    SvgPicture.asset(
+                      'assets/Emily_Toby_v3.svg',
+                      color: extractCardCol(controller.problemid.value),
+                      width: svgwidth,
+                    ),
+                    Container(
+                      margin:EdgeInsets.all(8),
+                      child:statsnumbutton(controller, controller.problemid.value-1, true, extractCardCol(controller.problemid.value), fontsize, svgwidth - 32.0, "Problems"),
+                    ),
+                  ]
+                ),
               ),
               Flexible(
                 flex: 3,

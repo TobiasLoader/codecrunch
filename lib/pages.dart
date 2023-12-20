@@ -111,7 +111,7 @@ PreferredSizeWidget appbar(context, Controller controller, Size size) {
       backgroundColor: Data.offwhite,
       elevation: 0.0,
       shape: Border(bottom: BorderSide(color: extractCardCol(controller.problemid.value), width: 1)),
-      title: Text('CodeCrunch.io', style: TextStyle(color: Colors.black45)),
+      title: Text('CodeCrunch.io', style: TextStyle(color: Colors.black45, fontFamily:'Poppins',fontWeight:FontWeight.bold)),
       actions: (() {
         var a = List<Widget>.generate(
           Data.pagenames.length,
@@ -132,6 +132,8 @@ PreferredSizeWidget appbar(context, Controller controller, Size size) {
                 () => Text(
                   Data.pagenames[i],
                   style: TextStyle(
+                    fontSize:14,
+                    fontWeight: FontWeight.bold,
                     color: (() {
                       if (controller.page.value == Data.pagenames[i])
                         return extractCardCol(controller.problemid.value);
@@ -179,7 +181,7 @@ PreferredSizeWidget appbar(context, Controller controller, Size size) {
 Widget pagesdrawersidebar(context, Controller controller, Size size) {
   return Drawer(
     child: ListView(
-      padding: EdgeInsets.only(top: 50),
+      padding: EdgeInsets.only(top: 30),
       children: (() {
         var a = List<Widget>.generate(
           Data.pagenames.length,
@@ -218,14 +220,10 @@ Widget pagesdrawersidebar(context, Controller controller, Size size) {
               child: Row(mainAxisSize: MainAxisSize.min, children: [
                 Padding(
                   padding: EdgeInsets.only(right: 30),
-                  child: new SvgPicture.asset('assets/codecrunchlogo.svg', width: 30),
+                  child: new SvgPicture.asset('assets/Emily_Toby_v2.svg', width: 30, color: extractCardCol(controller.problemid.value)),
                 ),
                 Text(
-                  "CodeCrunch.io",
-                  style: TextStyle(
-                    color: Colors.black45,
-                    fontSize: 20,
-                  ),
+                  'CodeCrunch.io', style: TextStyle(color: Colors.black45, fontFamily:'Poppins',fontWeight:FontWeight.bold,fontSize:20)
                 ),
               ]),
             ),

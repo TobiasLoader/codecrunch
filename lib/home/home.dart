@@ -125,8 +125,8 @@ class _HomeState extends State<Home> {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Text(
-              'Hello there !',
-              style: TextStyle(color: Colors.black87, fontSize: 40, fontWeight: FontWeight.w300),
+              'CodeCrunch',
+              style: TextStyle(color: Colors.black87, fontSize: 40, fontWeight: FontWeight.bold),
               textAlign: TextAlign.right,
             ),
             // FractionallySizedBox(
@@ -140,13 +140,19 @@ class _HomeState extends State<Home> {
             // Row(mainAxisAlignment: MainAxisAlignment.end, children: [
             //   Icon(Icons.chevron_left_rounded, color: Colors.black45),
             //   Text('dedicated to problem solving',
-            //       style: TextStyle(color: Colors.black45, fontSize: 16, fontWeight: FontWeight.w300),
+            //       style: TextStyle(color: Colors.black45, fontSize: 16, fontWeight: FontWeight.w400),
             //       textAlign: TextAlign.right),
             //   Icon(Icons.chevron_right_rounded, color: Colors.black45),
             // ])
             Text('dedicated to problem solving',
-                style: TextStyle(color: Colors.black45, fontSize: 16, fontWeight: FontWeight.w300),
-                textAlign: TextAlign.right),
+              style: TextStyle(
+                color: Colors.black45,
+                fontSize: 16,
+                fontWeight: FontWeight.normal,
+                fontFamily: 'Poppins'
+              ),
+              textAlign: TextAlign.right
+            ),
           ],
         ),
       ),
@@ -160,15 +166,15 @@ class _HomeState extends State<Home> {
         Padding(
           padding: EdgeInsets.only(bottom: 30),
           child: Text(
-            'Hello there !',
-            style: TextStyle(color: Colors.black87, fontSize: 35, fontWeight: FontWeight.w300),
+            'Hello there!',
+            style: TextStyle(color: Colors.black87, fontSize: 35, fontWeight: FontWeight.bold),
             textAlign: TextAlign.right,
           ),
         ),
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           Icon(Icons.chevron_left_rounded, color: Colors.black45),
           Text('dedicated to problem solving',
-              style: TextStyle(color: Colors.black45, fontSize: 14, fontWeight: FontWeight.w300),
+              style: TextStyle(color: Colors.black45, fontSize: 14, fontWeight: FontWeight.normal, fontFamily: 'Poppins'),
               textAlign: TextAlign.right),
           Icon(Icons.chevron_right_rounded, color: Colors.black45),
         ])

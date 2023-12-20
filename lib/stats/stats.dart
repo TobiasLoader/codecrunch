@@ -37,30 +37,44 @@ import '../setup.dart';
 //   }
 // }
 
-Widget statsnumbutton(controller, i, bool solved, Color colour, double fontsize, [double fixedsize = 0]) {
+Widget statsnumbutton(controller, i, bool solved, Color colour, double fontsize, [double fixedsize = 0, String to = "IndiStats"]) {
   return Container(
+    margin: ((){
+      if (solved)
+        return const EdgeInsets.all(8);
+      else
+        return const EdgeInsets.all(0);
+    }()),
     width: (() {
-      if (fixedsize != 0) return fixedsize;
+      if (fixedsize > 8) return fixedsize;
     }()),
     height: (() {
-      if (fixedsize != 0) return fixedsize;
+      if (fixedsize > 8) return fixedsize;
     }()),
     child: TextButton(
       onPressed: () {
         controller.problemid.value = i + 1;
-        controller.page.value = "IndiStats";
+        controller.page.value = to;
       },
+      style: ButtonStyle(
+        overlayColor: MaterialStateProperty.all(colour.withOpacity(0.1)),
+        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(7), // Adjust the radius here
+          ),
+        ),
+      ),
       child: Center(
         child: Text(
           (i + 1).toString(),
           style: TextStyle(
-              color: (() {
-                if (solved)
-                  return Colors.white.withOpacity(0.8);
-                else
-                  return colour.withOpacity(0.5);
-              })(),
-              fontSize: 3 * fontsize / (1 + ((i + 1).toString().length - 1) / 2.5)),
+            color: (() {
+              if (solved)
+                return Colors.white.withOpacity(0.8);
+              else
+                return colour.withOpacity(0.5);
+            })(),
+            fontSize: 3 * fontsize / (1 + ((i + 1).toString().length - 1) / 2.5)),
         ),
       ),
     ),
@@ -75,10 +89,10 @@ Widget statsproblemcard(sizewidth, controller, i, bool solved, Color colour, [do
       return Container(
         margin: const EdgeInsets.all(8),
         width: (() {
-          if (fixedsize != 0) return fixedsize;
+          if (fixedsize > 8) return fixedsize;
         }()),
         height: (() {
-          if (fixedsize != 0) return fixedsize;
+          if (fixedsize > 8) return fixedsize;
         }()),
         decoration: BoxDecoration(
           border: Border.all(color: colour.withOpacity(0.5)),
@@ -91,7 +105,7 @@ Widget statsproblemcard(sizewidth, controller, i, bool solved, Color colour, [do
           })(),
         ),
         child: (() {
-          if (fixedsize != 0)
+          if (fixedsize <= 8)
             return statsnumbutton(controller, i, solved, colour, fontsize);
           else
             return statsnumbutton(controller, i, solved, colour, fontsize, fixedsize);
@@ -99,18 +113,21 @@ Widget statsproblemcard(sizewidth, controller, i, bool solved, Color colour, [do
       );
     } else
       return Stack(children: [
-        (() {
-          if (fixedsize == 0)
-            return new SvgPicture.asset('assets/Emily_Toby_v4.svg', color: colour);
-          else
-            return new SvgPicture.asset(
-              'assets/Emily_Toby_v4.svg',
-              color: colour,
-              width: fixedsize,
-              height: fixedsize,
-            );
-        }()),
-        statsnumbutton(controller, i, solved, colour, fontsize, fixedsize),
+        Container(
+          child: (() {
+            if (fixedsize <= 8)
+              return new SvgPicture.asset('assets/Emily_Toby_v4.svg', color: colour);
+            else {
+              return new SvgPicture.asset(
+                'assets/Emily_Toby_v4.svg',
+                color: colour,
+                width: fixedsize,
+                height: fixedsize,
+              );
+            }
+          }()),
+        ),
+        statsnumbutton(controller, i, solved, colour, fontsize, fixedsize-16),
       ]);
   }());
 }
@@ -142,12 +159,12 @@ class Stats extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(left: size.width / 20),
                     child: statsproblemcard(
-                        size.width,
-                        controller,
-                        controller.problemid.value - 1,
-                        hasSolved(controller.problemid.value, controller.solved),
-                        extractCardCol(controller.problemid.value),
-                        120),
+                      size.width,
+                      controller,
+                      controller.problemid.value - 1,
+                      hasSolved(controller.problemid.value, controller.solved),
+                      extractCardCol(controller.problemid.value),
+                      120),
                   ),
                 ],
               ),
@@ -170,7 +187,7 @@ class Stats extends StatelessWidget {
                 //       size.width * 0.9, controller, i - 1, hasSolved(i, controller.solved), extractCardCol(i));
                 // else
                 return statsproblemcard(
-                    size.width, controller, i, hasSolved(i + 1, controller.solved), extractCardCol(i + 1));
+                  size.width, controller, i, hasSolved(i + 1, controller.solved), extractCardCol(i + 1));
               },
               // decoration: BoxDecoration(
               //   // gradient: (() {

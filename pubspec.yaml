@@ -25,7 +25,7 @@ dependencies:
     sdk: flutter
   get:
   flutter_svg: ^0.20.0-nullsafety.3
-
+  url_launcher:
 
 
 
@@ -59,6 +59,11 @@ flutter:
         - asset: fonts/Poppins-Light.ttf
         - asset: fonts/Poppins-Regular.ttf
         - asset: fonts/Poppins-SemiBold.ttf
+    - family: JetBrainsMono
+      fonts:
+        - asset: fonts/JetBrainsMono-Light.ttf
+        - asset: fonts/JetBrainsMono-Regular.ttf
+        - asset: fonts/JetBrainsMono-SemiBold.ttf
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

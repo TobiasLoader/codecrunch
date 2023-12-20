@@ -128,30 +128,46 @@ class _DescriptionState extends State<ProblemDescription> {
         Flexible(
           flex: 8,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Center(
+              Padding(
+                padding: EdgeInsets.only(bottom:10),
+                child: Center(
                   child: Text(
-                      widget.controller.problemid.value.toString() +
-                          ". " +
-                          extractCardName(widget.controller.problemid.value),
-                      style: TextStyle(fontSize: 25),
-                      textAlign: TextAlign.center)),
-              Center(
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(maxHeight: 200),
-                  child: SingleChildScrollView(
-                      child: Text(
-                    extractCardDesc(widget.controller.problemid.value),
-                    textAlign: TextAlign.justify,
-                    style: TextStyle(height: 1.7),
-                  )),
+                    widget.controller.problemid.value.toString() +
+                        ". " +
+                        extractCardName(widget.controller.problemid.value),
+                    style: TextStyle(fontSize: 25),
+                    textAlign: TextAlign.center
+                  )
                 ),
               ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text('Question by ' + questionAuthor(widget.controller.problemid.value),
-                    style: TextStyle(color: Colors.black38, fontSize: 13)),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical:10),
+                child: Center(
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(maxHeight: 200),
+                    child: SingleChildScrollView(
+                      child: Text(
+                        extractCardDesc(widget.controller.problemid.value),
+                        textAlign: TextAlign.justify,
+                        style: TextStyle(
+                          height: 1.3,
+                          fontWeight:FontWeight.normal,
+                          fontFamily: 'Poppins'
+                        ),
+                      )
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(bottom:20),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text('Question by ' + questionAuthor(widget.controller.problemid.value),
+                      style: TextStyle(color: Colors.black38, fontSize: 13, fontFamily:'Poppins')),
+                ),
               ),
               Obx(
                 () => Center(
@@ -166,12 +182,12 @@ class _DescriptionState extends State<ProblemDescription> {
                           children: [
                             Center(
                                 child: Padding(
-                                    padding: EdgeInsets.only(right: 10),
-                                    child: Text(solutionToProblem(widget.controller.problemid.value).toString()))),
+                                  padding: EdgeInsets.only(right: 10),
+                                  child: Text(solutionToProblem(widget.controller.problemid.value).toString()))),
                             Center(
                               widthFactor: 1,
                               child: Padding(
-                                  padding: EdgeInsets.only(left: 10), child: new SvgPicture.asset('assets/tick.svg')),
+                                padding: EdgeInsets.only(left: 10), child: new SvgPicture.asset('assets/tick.svg')),
                             ),
                           ],
                         ),

@@ -6,6 +6,7 @@ import 'pages.dart';
 import 'setup.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(Crunch());
 }
 
@@ -18,7 +19,7 @@ class Crunch extends StatelessWidget {
       title: 'CodeCrunch',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        fontFamily: 'Poppins',
+        fontFamily: 'JetBrainsMono',
         primarySwatch: createMaterialColor(Data.offwhitedark),
         visualDensity: VisualDensity.adaptivePlatformDensity,
         highlightColor: Colors.black.withOpacity(.5),
